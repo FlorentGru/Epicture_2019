@@ -42,7 +42,7 @@ public class Login {
         GetPictures getpictures = new GetPictures(activity,this);
         int nb = 0;
         String url = "";
-        while (nb < 10) {
+        while (nb < 7) {
             url = "https://api.imgur.com/3/gallery/hot/viral/" + nb + ".json";
             getpictures.requestPictures(url);
             nb++;

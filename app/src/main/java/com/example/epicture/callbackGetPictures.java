@@ -63,7 +63,7 @@ public class callbackGetPictures implements okhttp3.Callback {
                 e.printStackTrace();
             }
             nb++;
-            if (nb >= 10)
+            if (nb >= 7)
                 activity.runOnUiThread(new Runnable() {
                     @Override
                     public void run() {
