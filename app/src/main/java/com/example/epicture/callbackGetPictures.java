@@ -1,6 +1,7 @@
 package com.example.epicture;
 
 import android.app.Activity;
+import android.graphics.Color;
 import android.graphics.Rect;
 import android.util.Log;
 import android.view.View;
@@ -88,6 +89,8 @@ public class callbackGetPictures implements okhttp3.Callback {
             public void onBindViewHolder(PhotoVH holder, int position) {
                 Picasso.with(activity).load("https://i.imgur.com/" + pictures.get(position).id + ".jpg").into(holder.photo);
 //                Picasso.with(activity).load(pictures.get(position).link).into(holder.photo);
+                holder.title.setBackgroundColor(Color.rgb(216, 81, 40));
+                holder.title.setTextColor(Color.WHITE);
                 holder.title.setText(pictures.get(position).title);
             }
 
