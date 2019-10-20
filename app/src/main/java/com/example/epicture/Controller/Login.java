@@ -16,7 +16,7 @@ public class Login {
 
     public Login(Activity _activity) {
         activity = _activity;
-   }
+    }
 
     public void login() {
         final WebView imgurWebView = (WebView) activity.findViewById(R.id.LoginWebView);
@@ -29,7 +29,7 @@ public class Login {
                 if (url.contains("https://www.getpostman.com/oauth2/")) {
                     getInformation(url, view);
                     imgurWebView.destroy();
-                    test();
+                    requestPictures();
                 } else {
                     view.loadUrl(url);
                 }
@@ -38,7 +38,7 @@ public class Login {
         });
     }
 
-    public void test() {
+    public void requestPictures() {
         GetPictures getpictures = new GetPictures(activity,this);
         int nb = 0;
         String url = "";

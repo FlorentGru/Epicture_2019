@@ -78,19 +78,18 @@ public class callbackGetPictures implements okhttp3.Callback {
     private void render(final List<MyPictures> pictures) {
         RecyclerView rv = activity.findViewById(R.id.rv_of_photos);
         rv.setLayoutManager(new LinearLayoutManager(activity));
-        RecyclerView.Adapter<PhotoVH> adapter = new RecyclerView.Adapter<PhotoVH>() {
+        RecyclerView.Adapter<pictureViewHolder> adapter = new RecyclerView.Adapter<pictureViewHolder>() {
             @Override
-            public PhotoVH onCreateViewHolder(ViewGroup parent, int viewType) {
-                PhotoVH vh = new PhotoVH(activity.getLayoutInflater().inflate(R.layout.item, null));
-                vh.photo = vh.itemView.findViewById(R.id.photo);
-                vh.title = vh.itemView.findViewById(R.id.title);
-                return vh;
+            public pictureViewHolder onCreateViewHolder(ViewGroup parent, int viewType) {
+                pictureViewHolder pvh = new pictureViewHolder(activity.getLayoutInflater().inflate(R.layout.item, null));
+                pvh.photo = pvh.itemView.findViewById(R.id.photo);
+                pvh.title = pvh.itemView.findViewById(R.id.title);
+                return pvh;
             }
 
             @Override
-            public void onBindViewHolder(PhotoVH holder, int position) {
+            public void onBindViewHolder(pictureViewHolder holder, int position) {
                 Picasso.with(activity).load("https://i.imgur.com/" + pictures.get(position).id + ".jpg").into(holder.photo);
-//                Picasso.with(activity).load(pictures.get(position).link).into(holder.photo);
                 holder.title.setBackgroundColor(Color.rgb(216, 81, 40));
                 holder.title.setTextColor(Color.WHITE);
                 holder.title.setText(pictures.get(position).title);
@@ -110,10 +109,10 @@ public class callbackGetPictures implements okhttp3.Callback {
         });
     }
 
-    private static class PhotoVH extends RecyclerView.ViewHolder {
+    private static class pictureViewHolder extends RecyclerView.ViewHolder {
         ImageView photo;
         TextView title;
-        public PhotoVH(View itemView) {
+        public pictureViewHolder(View itemView) {
             super(itemView);
         }
     }

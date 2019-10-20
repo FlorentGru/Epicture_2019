@@ -21,8 +21,6 @@ public class GetPictures {
     }
 
     public void requestPictures(String url) {
-//        String url = "https://api.imgur.com/3/gallery/top/viral/1.json";
-//        String url = "https://api.imgur.com/3/account/" + login.username + "/images";
         Request request = new Request.Builder()
                 .url(url)
                 .header("Authorization","Bearer " + login.accessToken)
