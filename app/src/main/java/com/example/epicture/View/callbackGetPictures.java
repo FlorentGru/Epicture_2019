@@ -12,7 +12,7 @@ import android.widget.TextView;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
-import com.example.epicture.Modele.MyPictures;
+import com.example.epicture.Model.MyPictures;
 import com.example.epicture.R;
 import com.squareup.picasso.Picasso;
 
