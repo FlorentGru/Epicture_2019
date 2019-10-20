@@ -1,4 +1,4 @@
-package com.example.epicture;
+package com.example.epicture.Modele;
 
 public class MyPictures {
     public String id;

@@ -1,6 +1,8 @@
-package com.example.epicture;
+package com.example.epicture.Controller;
 
 import android.app.Activity;
+
+import com.example.epicture.View.callbackGetPictures;
 
 import okhttp3.*;
 

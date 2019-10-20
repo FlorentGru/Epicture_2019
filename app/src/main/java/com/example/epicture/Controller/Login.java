@@ -1,11 +1,11 @@
-package com.example.epicture;
+package com.example.epicture.Controller;
 
 import android.app.Activity;
-import android.content.Intent;
 import android.graphics.Color;
-import android.util.Log;
 import android.webkit.WebView;
 import android.webkit.WebViewClient;
+
+import com.example.epicture.R;
 
 public class Login {
 

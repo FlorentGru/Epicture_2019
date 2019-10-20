@@ -1,4 +1,4 @@
-package com.example.epicture;
+package com.example.epicture.View;
 
 import android.app.Activity;
 import android.graphics.Color;
@@ -12,6 +12,8 @@ import android.widget.TextView;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
+import com.example.epicture.Modele.MyPictures;
+import com.example.epicture.R;
 import com.squareup.picasso.Picasso;
 
 import org.json.JSONArray;
