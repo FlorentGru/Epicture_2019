@@ -40,13 +40,17 @@ public class Login {
 
     public void test() {
         GetPictures getpictures = new GetPictures(activity,this);
-        String url = "https://api.imgur.com/3/gallery/hot/viral/3.json";
-        getpictures.requestPictures(url);
+        int nb = 0;
+        String url = "";
+        while (nb < 10) {
+            url = "https://api.imgur.com/3/gallery/hot/viral/" + nb + ".json";
+            getpictures.requestPictures(url);
+            nb++;
+        }
     }
 
     private void getInformation(String url, WebView view) {
         String[] urlSplit = url.split("\\#")[1].split("\\&");
-        Log.i("DEBUG url", url);
         int nb = 0;
         for (String s : urlSplit) {
             String[] info = s.split("\\=");

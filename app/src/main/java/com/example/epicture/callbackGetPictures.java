@@ -26,10 +26,13 @@ import okhttp3.Response;
 
 public class callbackGetPictures implements okhttp3.Callback {
     private Activity activity;
+    private int nb;
+    final List<MyPictures> images = new ArrayList<MyPictures>();
 
     public callbackGetPictures(Activity _activity) {
         super();
         activity = _activity;
+        nb = 0;
     }
 
     @Override
@@ -42,10 +45,8 @@ public class callbackGetPictures implements okhttp3.Callback {
         if (response != null) {
             JSONObject data;
             JSONArray items;
-            final List<MyPictures> images = new ArrayList<MyPictures>();
             try {
                 data = new JSONObject(response.body().string());
-                Log.i("DEBUG", data.toString());
                 items = data.getJSONArray("data");
                 for (int i = 0; i < items.length(); ++i) {
                     JSONObject item = items.getJSONObject(i);
@@ -53,36 +54,40 @@ public class callbackGetPictures implements okhttp3.Callback {
 
                     image.id = item.getString("id");
                     image.title = item.getString("title");
-                    images.add(image);
+                    image.link = item.getString("link");
+                    if (image.link.contains("https://i.imgur.com/"))
+                        images.add(image);
                 }
             } catch (JSONException e) {
                 e.printStackTrace();
             }
-            activity.runOnUiThread(new Runnable() {
-                @Override
-                public void run() {
-                    render(images);
-                }
-            });
+            nb++;
+            if (nb >= 10)
+                activity.runOnUiThread(new Runnable() {
+                    @Override
+                    public void run() {
+                        render(images);
+                    }
+                });
         }
     }
 
     private void render(final List<MyPictures> pictures) {
-        RecyclerView rv = (RecyclerView)activity.findViewById(R.id.rv_of_photos);
+        RecyclerView rv = activity.findViewById(R.id.rv_of_photos);
         rv.setLayoutManager(new LinearLayoutManager(activity));
         RecyclerView.Adapter<PhotoVH> adapter = new RecyclerView.Adapter<PhotoVH>() {
             @Override
             public PhotoVH onCreateViewHolder(ViewGroup parent, int viewType) {
                 PhotoVH vh = new PhotoVH(activity.getLayoutInflater().inflate(R.layout.item, null));
-                vh.photo = (ImageView) vh.itemView.findViewById(R.id.photo);
-                vh.title = (TextView) vh.itemView.findViewById(R.id.title);
+                vh.photo = vh.itemView.findViewById(R.id.photo);
+                vh.title = vh.itemView.findViewById(R.id.title);
                 return vh;
             }
 
             @Override
             public void onBindViewHolder(PhotoVH holder, int position) {
-                Picasso.with(activity).load("https://i.imgur.com/" +
-                        pictures.get(position).id + ".jpg").into(holder.photo);
+                Picasso.with(activity).load("https://i.imgur.com/" + pictures.get(position).id + ".jpg").into(holder.photo);
+//                Picasso.with(activity).load(pictures.get(position).link).into(holder.photo);
                 holder.title.setText(pictures.get(position).title);
             }
 
